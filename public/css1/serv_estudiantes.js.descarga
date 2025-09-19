@@ -1,0 +1,202 @@
+$(document).ready(function () {
+   //*** Configuramos la situación inicial de la forma
+   $("#idIndicadorProceso").hide();
+   $("#idIndicadorProceso2").hide();
+   $("#idCuenta").val("");
+   $("#idCuenta").focus();
+   window.scrollTo(0,0); 
+   //$([document.documentElement, document.body]).animate({
+   //   scrollTop: $("#idCuenta").offset().top-190
+   // }, 000);   
+
+   //*** Programamos los eventos importantes Forma Principal
+   $("#idCuenta").keydown(function (e) {
+      if (e.which===13) {
+         e.preventDefault();
+         $("#idContrasena").focus();
+      }
+   });
+   $("#idContrasena").keydown(function (e) {
+      if (e.which===13) {
+        e.preventDefault();
+        $("#idDia").focus();
+      }
+   });
+   $("#idDia").keydown(function (e) {
+      if (e.which===13) {
+        e.preventDefault();
+        $("#idMes").focus();
+      }
+   });
+   $("#idMes").keydown(function (e) {
+      if (e.which===13) {
+        e.preventDefault();
+        $("#idAnio").focus();
+      }           
+   });
+   $("#idAnio").keydown(function (e) {
+      if (e.which===13) {
+        e.preventDefault();
+        $("#idCodigo").focus();
+      }                
+   });
+
+   //*** Programamos los eventos importantes Forma de Recuperación
+   $("#idRecCodSIS").keydown(function (e) {
+      $("#idDivRecuperarPwdMsg1").html("");
+      $("#idDivRecuperarPwdMsg2").html("");
+
+      if (e.which===13) {
+         e.preventDefault();
+         $("#idRecDia").focus();
+      }
+   });
+   $("#idRecDia").keydown(function (e) {
+      if (e.which===13) {
+         e.preventDefault();
+         $("#idRecMes").focus();
+      }
+   });
+   $("#idRecMes").keydown(function (e) {
+      if (e.which===13) {
+         e.preventDefault();
+         $("#idRecAnio").focus();
+      }
+   });
+   $("#idRecAnio").keydown(function (e) {
+      if (e.which===13) {
+         e.preventDefault();
+         $("#idRecImagen").focus();
+      }
+   });
+
+   //*** Verificar forma antes del submit
+   $("#idFrmLogin").submit(function (e) {
+      var strCuenta;
+      var form = this;
+      var booOK = true;
+      var strActionForm="verificar_stud.asp"         
+
+      $("#idBtnSubmit").hide();
+      $("#idIndicadorProceso").show();//fadeIn(800);
+      
+
+      e.preventDefault();
+
+      // Verificacion del Formulario
+      strCuenta = $.trim($("#idCuenta").val());
+      if (strCuenta  === '') {
+         alert('Debe introducir su código SIS de estudiante.');
+         $("#idCuenta").focus();
+         $("#idBtnSubmit").show(0);
+         $("#idIndicadorProceso").hide(0);             
+         booOK=false;
+         return false;
+      }
+      if ((strCuenta.length!= 9)) {
+         alert('El código SIS del estudiante es de 9 digitos.');
+         $("#idCuenta").focus();
+         $("#idIndicadorProceso").hide(0);
+         $("#idBtnSubmit").show(0);
+         booOK=false;
+         return false;
+      }
+      if (isNaN(strCuenta)) {
+         alert('El código SIS del estudiante debe ser númerico.');
+         $("#idCuenta").focus();
+         $("#idIndicadorProceso").hide(0);
+         $("#idBtnSubmit").show(0);
+         booOK=false;
+         return false;
+      }
+      strContrasena = $.trim($("#idContrasena").val());
+      if (strContrasena  === '') {
+         alert('Debe introducir una Contraseña válida.');
+         $("#idContrasena").focus();
+         $("#idIndicadorProceso").hide(0);
+         $("#idBtnSubmit").show(0);
+         booOK=false;
+         return false;
+      }
+      strCodigo = $.trim($("#idCodigo").val());
+      if (strCodigo  === '') {
+         alert('Debe introducir el código de verificación que aparece en la imagen.');
+         $("#idCodigo").focus();
+         $("#idIndicadorProceso").hide(0);
+         $("#idBtnSubmit").show(0);
+         booOK=false;
+         return false;
+      }
+
+      if (booOK==false) {
+         $("#idIndicadorProceso").hide();
+         return false;
+      }
+      else {
+         setTimeout(function () {
+            $("#idFrmLogin").attr('action', strActionForm);
+            form.submit();
+         },1000);
+      }
+   });
+   $("#idFormRecuperarPwd").submit(function (e) {
+      var form=this;
+      var formActionURL="stud_recuperar_ajax.asp";//$(this).attr("action");
+      var postData=$(this).serializeArray();
+
+      $("#idBtnSubmit2").hide();
+      $("#idIndicadorProceso2").show();
+
+      e.preventDefault();
+
+      // Verificacion del Formulario
+      strRecCodSIS = $.trim($("#idRecCodSIS").val());
+      if (strRecCodSIS  === '') {
+         alert('Debe introducir su código SIS de estudiante.');
+         $("#idIndicadorProceso2").hide(0);
+         $("#idBtnSubmit2").show(0);               
+         $("#idRecCodSIS").focus();
+         return false;
+      }
+      if ((strRecCodSIS.length!= 9)) {
+         alert('El código SIS del estudiante es de 9 digitos.');
+         $("#idIndicadorProceso2").hide(0);
+         $("#idBtnSubmit2").show(0);                              
+         $("#idRecCodSIS").focus();
+         return false;
+      } 
+      if (isNaN(strRecCodSIS)) {
+         alert('El código SIS del estudiante es númerico.');
+         $("#idIndicadorProceso2").hide(0);
+         $("#idBtnSubmit2").show(0);                              
+         $("#idRecCodSIS").focus();
+         return false;
+      }
+
+      strRecImagen = $.trim($("#idRecImagen").val());
+      if (strRecImagen  === '') {
+         alert('Debe introducir el código de verificación');
+         $("#idIndicadorProceso2").hide(0);
+         $("#idBtnSubmit2").show(0);                              
+         $("#idRecImagen").focus();
+         return false;
+      }
+      setTimeout(function () {
+         $.post(formActionURL,postData,function (data,status) {
+            strRespuesta=data;
+            $("#idDivRecuperarPwdMsg1").html(strRespuesta);
+            $("#idDivRecuperarPwdMsg2").html(strRespuesta);
+            $("#idRecCodSIS").val("");
+            $("#idRecImagen").val("")
+            $("#idRecDia").val("01");
+            $("#idRecMes").val("01");
+            $("#idRecAnio").val(2004);
+            $('#idCodVerificacion2').attr('src', $('#idCodVerificacion2').attr('src') + '?' + Math.random());
+
+            $("#idIndicadorProceso2").hide(0);
+            $("#idBtnSubmit2").show(0);                                                
+            $("#idRecCodSIS").focus();
+         });
+      },2000);
+   });
+});

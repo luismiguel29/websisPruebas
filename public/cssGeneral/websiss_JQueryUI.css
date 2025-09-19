@@ -1,0 +1,18 @@
+/*** BEGIN JQUERY UI ***/
+
+/* ACCORDION */
+
+#idAccordionLoginPost .ui-icon {
+   display: none;
+}
+
+/* los que no estan seleccionados*/
+/*.ui-accordion-header { background-color: blue; }*/
+
+/* cuando esta seleccionado */
+#idAccordionLoginPost .ui-accordion-header.ui-state-active {
+   color: white;
+   background-color: #215F88;
+}
+ 
+/*** END JQUERY UI ***/

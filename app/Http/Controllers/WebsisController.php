@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class WebsisController extends Controller
+{
+    public function login()
+    {
+        return view('login');
+    }
+    public function inicio()
+    {
+        return view('inicio');
+    }
+
+    public function codigos()
+    {
+        $estado = DB::table('control')
+            ->where('id', '=', 1)
+            ->first();
+        return view('codigos', compact('estado'));
+    }
+
+    public function materiasIns()
+    {
+        $materias = DB::table('materias')->get();
+        return view('materiasIns', compact('materias'));
+    }
+
+    public function oferta()
+    {
+        $estado = session('estado', false);
+        if (!$estado) {
+            return view('oferta');
+        } else {
+            return view('ofertaSup');
+        }
+    }
+
+    public function errorpage()
+    {
+        return view('errorpage');
+    }
+
+    public function materia(Request $request)
+    {
+        $grupos = DB::table('control')->get();
+        $materia = $request->input('materia');
+        $modo = $request->input('modo');
+        $labo = $request->input('labo');
+        return view('materia', compact('materia', 'modo', 'labo', 'grupos'));
+    }
+
+    public function materiaEdit(Request $request)
+    {
+        $grupos = DB::table('control')->get();
+        $materia = $request->input('materia');
+        $labo = $request->input('labo');
+        return view('materiaEdit', compact('materia', 'labo', 'grupos'));
+    }
+
+    public function activar()
+    {
+        session(['estado' => true]);
+        return redirect()->back();
+    }
+    public function registro(Request $request)
+    {
+        $grupoFinal = null;
+        $labo = false;
+        $grupoP = $request->input('grupoPractica');
+        if ($grupoP == null) {
+            $grupoFinal = $request->input('grupo');
+        } else {
+            $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
+            $labo = true;
+        }
+        DB::table('materias')->insert([
+            'materia' => $request->input('materia'),
+            'grupo' => $grupoFinal,
+            'modo' => $request->input('modo'),
+            'labo' => $labo
+        ]);
+        return view('oferta');
+    }
+    public function actualizar(Request $request)
+    {
+        $grupoFinal = null;
+        $labo = false;
+        $grupoP = $request->input('grupoPractica');
+        if ($grupoP == null) {
+            $grupoFinal = $request->input('grupo');
+        } else {
+            $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
+            $labo = true;
+        }
+        DB::table('materias')
+            ->where('materia', '=', $request->input('materia'))
+            ->update([
+                'grupo' => $grupoFinal,
+                'modo' => $request->input('tipo')
+            ]);
+        return view('oferta');
+    }
+    function control()
+    {
+        $estado = DB::table('control')->where('id', '=', 1)->first();
+        $materias = DB::table('control')->get();
+        return view('control', compact('estado', 'materias'));
+    }
+    function controlHabilitar(Request $request)
+    {
+        $idsMarcados = array_keys($request->all());
+        if (!empty($idsMarcados)) {
+            DB::table('control')
+                ->whereIn('id', $idsMarcados)
+                ->update(['estado' => 1]);
+        }
+
+        return back()->with('success', 'Materias actualizadas correctamente.');
+    }
+}
