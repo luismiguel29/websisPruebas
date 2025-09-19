@@ -13,9 +13,7 @@
     <meta name="keywords"
         content="Universidad Mayor de San Sim�n,umss,informaci�n estudiantil,estudiante,docentes,inscripci�n,sis,websis,websiss">
 
-    <script defer="" src="./css1/websiss.js.descarga"></script>
-
-    <!-- AWESOME FONTS -->
+    
     <style type="text/css">
         svg:not(:root).svg-inline--fa {
             overflow: visible
@@ -467,31 +465,10 @@
             width: auto
         }
     </style>
-    {{-- <link rel="stylesheet" href="./css1/fontawesome.min.css"> --}}
-
-    {{-- <script defer="" src="./css1/fontawesome-all.min.js.descarga"></script> --}}
-
-    <!-- JQUERY -->
-    <script src="./css1/jquery-3.3.1.min.js.descarga"></script>
-    {{-- <script src="./css1/js.cookie.min.js.descarga"></script> --}}
-    <!-- Bootstrap -->
-
-    {{-- <script defer="" src="./css1/popper.min.js.descarga"></script> --}}
-    <link href="./css1/bootstrap.min.css" rel="stylesheet">
-    <script defer="" src="./css1/bootstrap.min.js.descarga"></script>
-    <!-- webSISS CSS -->
-
-   {{--  <link rel="stylesheet" type="text/css" href="./css1/websiss.css"> --}}
-
-    <!-- FONTS para solucionar problemas con Chrome Android -->
-   {{--  <link href="./css1/css" rel="stylesheet"> --}}
-
-    {{-- <script defer="" src="./css1/websiss_JQuery.js.descarga"></script>
-    <link rel="stylesheet" href="./css1/jquery-ui.min.css">
-    <script defer="" src="./css1/jquery-ui.min.js.descarga"></script>
-    <link rel="stylesheet" type="text/css" href="./css1/websiss_JQueryUI.css">
-    <script defer="" src="./css1/websiss_JQueryUI.js.descarga"></script>
-    <script defer="" src="./css1/serv_estudiantes.js.descarga"></script> --}}
+    
+    <script src="{{ asset('cssGeneral/jquery-3.3.1.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('cssGeneral/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('cssGeneral/websiss.css') }}">
 </head>
 
 <body>
@@ -604,7 +581,7 @@
                     <tbody>
                         <tr>
                             <td style="vertical-align:middle;">
-                                <img src="./css1/umss.png" height="90" style="border:none;" alt="umss">
+                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;" alt="umss">
                             </td>
                             <td style="vertical-align:middle;width:100%">
                                 <table>
@@ -1198,7 +1175,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3" style="font-size:13px;">
-                                                        <img src="./css1/stud_codVerificacion1.asp.descarga"
+                                                        <img src="{{ asset('cssGeneral/stud_codVerificacion1.asp') }}"
                                                             style="border:1px solid black;float:left;" alt="imagen">
                                                         Copie el código que aparece en la imagen de la izquierda
                                                     </td>
@@ -1600,7 +1577,7 @@
                      
                   </select>
                   <br>
-                  <label><img src="./css1/stud_codVerificacion2.asp.descarga" style="border:1px solid black;float:left;" alt="imagen" id="idCodVerificacion2"> &nbsp;C�DIGO DE VERIFICACI�N </label>
+                  <label><img src="{{ asset('cssGeneral/stud_codVerificacion2.asp') }}" style="border:1px solid black;float:left;" alt="imagen" id="idCodVerificacion2"> &nbsp;C�DIGO DE VERIFICACI�N </label>
                   <input type="text" class="form-control" id="idRecImagen" maxlength="15" name="XUA414506R">
                   <br>
                   <button id="idBtnSubmit2" type="submit" class="btn btn-primary" style="border-color:#215F88;background-color:#215F88;">

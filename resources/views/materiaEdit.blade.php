@@ -466,30 +466,10 @@
             width: auto
         }
     </style>
-    {{-- <link rel="stylesheet" href="./css3/fontawesome.min.css">
-    <script defer="" src="./css3/fontawesome-all.min.js.descarga"></script> --}}
-
-    <!-- JQUERY -->
-    <script src="./cssGeneral/jquery-3.3.1.min.js"></script>
-    {{-- <script src="./css3/js.cookie.min.js.descarga"></script> --}}
-
-    <!-- Bootstrap -->
-    {{-- <script defer="" src="./css3/popper.min.js.descarga"></script> --}}
-    <link href="./cssGeneral/bootstrap.min.css" rel="stylesheet">
-    {{-- <script defer="" src="./css3/bootstrap.min.js.descarga"></script> --}}
-
-    <!-- webSISS CSS -->
-    <link rel="stylesheet" type="text/css" href="./cssGeneral/websiss.css">
-
-    <!-- FONTS para solucionar problemas con Chrome Android -->
-    {{-- <link href="./css3/css" rel="stylesheet"> --}}
-
-    {{-- <script defer="" src="./css3/websiss_JQuery.js.descarga"></script> --}}
-    {{-- <link rel="stylesheet" href="./css3/jquery-ui.min.css"> --}}
-    {{-- <script defer="" src="./css3/jquery-ui.min.js.descarga"></script> --}}
-    {{-- <link rel="stylesheet" type="text/css" href="./css3/websiss_JQueryUI.css"> --}}
-    {{-- <script defer="" src="./css3/websiss_JQueryUI.js.descarga"></script> --}}
-    <script defer="" src="./cssGeneral/stud_ModificarMaterias.js"></script>
+    <script src="{{ asset('cssGeneral/jquery-3.3.1.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('cssGeneral/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('cssGeneral/websiss.css') }}">
+    <script defer="" src="{{ asset('cssGeneral/stud_ModificarMaterias.js') }}"></script>
     <script>
         function Grupo(grp, abierto, tipo, grpaux) {
             this.grupo = grp;
@@ -595,7 +575,7 @@
                     <tbody>
                         <tr>
                             <td style="vertical-align:middle;">
-                                <img src="./csseditar/umss.png" height="90" style="border:none;" alt="umss">
+                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;" alt="umss">
                             </td>
                             <td style="vertical-align:middle;width:100%">
                                 <table>
