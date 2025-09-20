@@ -32,7 +32,7 @@ $(document).ready(function () {
    $("#idBtnEliminar").click(function() {
       var resp;
       var intChecked;
-      var strActionForm="stud_EliminarMaterias.asp?servicio=s&codSer=STUD&idCat=39"
+      var strActionForm="borrarMateria"
 
       intChecked=$("input[type=checkbox]:checked").length;
       if (intChecked>=1) {

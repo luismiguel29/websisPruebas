@@ -1003,7 +1003,7 @@
                 </table>
 
                 <!-- ********************************* BEGIN ******************************************************** -->
-                <div method="get" id="idFrmEliminar">
+                <form method="get" id="idFrmEliminar" action="{{ route('borrarMateria') }}">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered">
                             <thead>
@@ -1034,7 +1034,7 @@
 
                                         <td style="text-align:center;vertical-align: middle;">
 
-                                            <input type="checkbox" name="borrar" value="E080A9286FD12505"
+                                            <input type="checkbox" name="{{ $materia->id }}"
                                                 style="cursor:pointer;height:25px;width:25px;">
 
                                         </td>
@@ -1129,7 +1129,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </form>
                 <!-- ****************************** END *********************************************************** -->
 
                 <table style="background-color:#fff;width:100%;margin:0px;border:0px;padding:0px;">

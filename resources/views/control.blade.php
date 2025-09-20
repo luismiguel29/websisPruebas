@@ -13,14 +13,17 @@
         <h1>Control Websis</h1>
         <form action="controlHabilitar" method="GET">
             <div>
-                <input type="checkbox" name="{{ $estado->id }}" @if ($estado->estado) checked @endif>
+                <input type="hidden" name="{{ $estado->id }}" value="0">
+                <input type="checkbox" name="{{ $estado->id }}" value="1"
+                    @if ($estado->estado) checked @endif>
                 <label for="">Estado websis</label>
             </div>
             <h2>Materias:</h2>
             @foreach ($materias as $mat)
                 @if ($mat->normal)
                     <div>
-                        <input type="checkbox" name="{{ $mat->id }}"
+                        <input type="hidden" name="{{ $mat->id }}" value="0">
+                        <input type="checkbox" name="{{ $mat->id }}" value="1"
                             @if ($mat->estado) checked @endif>
                         <label for="">{{ $mat->nombre }}</label>
                     </div>
@@ -30,7 +33,8 @@
             @foreach ($materias as $mat)
                 @if (!$mat->normal && $mat->id != 1)
                     <div>
-                        <input type="checkbox" name="{{ $mat->id }}"
+                        <input type="hidden" name="{{ $mat->id }}" value="0">
+                        <input type="checkbox" name="{{ $mat->id }}" value="1"
                             @if ($mat->estado) checked @endif>
                         <label for="">{{ $mat->nombre }}</label>
                     </div>

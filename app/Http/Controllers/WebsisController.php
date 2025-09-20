@@ -113,13 +113,21 @@ class WebsisController extends Controller
     }
     function controlHabilitar(Request $request)
     {
-        $idsMarcados = array_keys($request->all());
-        if (!empty($idsMarcados)) {
+        $data = $request->all();
+        foreach ($data as $key => $value) {
             DB::table('control')
-                ->whereIn('id', $idsMarcados)
-                ->update(['estado' => 1]);
+                ->where('id', $key)
+                ->update([
+                    'estado' => $value
+                ]);
         }
-
         return back()->with('success', 'Materias actualizadas correctamente.');
+    }
+    function borrarMateria(Request $request){
+        $data = array_keys($request->all());
+        DB::table('materias')
+        ->whereIn('id', $data)
+        ->delete();
+        return back();
     }
 }
