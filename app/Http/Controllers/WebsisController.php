@@ -123,11 +123,15 @@ class WebsisController extends Controller
         }
         return back()->with('success', 'Materias actualizadas correctamente.');
     }
-    function borrarMateria(Request $request){
+    function borrarMateria(Request $request)
+    {
         $data = array_keys($request->all());
-        DB::table('materias')
-        ->whereIn('id', $data)
-        ->delete();
+        $ids = array_filter($data, fn($id) => is_numeric($id));
+        if (!empty($ids)) {
+            DB::table('materias')
+                ->whereIn('id', $ids)
+                ->delete();
+        }
         return back();
     }
 }
