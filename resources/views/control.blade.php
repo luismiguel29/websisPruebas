@@ -13,6 +13,9 @@
     <div class="container-fluid">
         <h1>Control Websis</h1>
         <div class="container-fluid">
+            <form action="borrarMaterias" method="GET">
+                <button class="btn btn-primary">BORRAR</button>
+            </form>
             <div class="row">
                 <form action="controlHabilitar" method="GET">
                     <div class="col">
@@ -91,14 +94,8 @@
                                 <button class="btn btn-primary">GUARDAR</button>
                             </div>
                         </div>
-
                     </form>
 
-                </div>
-                <div class="col">
-                    <form action="borrarMaterias" method="GET">
-                        <button class="btn btn-primary">BORRAR</button>
-                    </form>
                 </div>
             </div>
 
