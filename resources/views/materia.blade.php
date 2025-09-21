@@ -1009,7 +1009,7 @@
 
         <form name="forma" action="registro" method="get" id="idFrmAnadir">
             @csrf
-            <input type="hidden" name="materia" value="{{ $materia }}">
+            <input type="hidden" name="materia" value="{{ $materia->nombre }}">
             <input type="hidden" name="modo" value="{{ $modo }}">
 
             <div class="table-responsive">
@@ -1020,7 +1020,7 @@
                                 Materia
                             </td>
                             <td style="font-size:20px;font-weight:bold;">
-                                {{ $materia }} (1500052)
+                                {{ $materia->nombre }} (1500052)
                             </td>
                         </tr>
                         <tr>
@@ -1067,7 +1067,7 @@
                         </tr>
 
 
-                        @if ($labo == 1)
+                        @if ($materia->practica == 1)
                             <tr>
                                 <td colspan="2">
                                     <span style="font-weight: bold;color:green;">Grupo(s) de Practica:</span>

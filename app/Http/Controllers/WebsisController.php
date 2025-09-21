@@ -32,11 +32,12 @@ class WebsisController extends Controller
 
     public function oferta()
     {
+        $materias = DB::table('listamateria')->get();
         $estado = session('estado', false);
         if (!$estado) {
-            return view('oferta');
+            return view('oferta', compact('materias'));
         } else {
-            return view('ofertaSup');
+            return view('ofertaSup', compact('materias'));
         }
     }
 
@@ -48,10 +49,11 @@ class WebsisController extends Controller
     public function materia(Request $request)
     {
         $grupos = DB::table('control')->get();
-        $materia = $request->input('materia');
+        $materia = DB::table('listamateria')
+            ->where('id', $request->input('materia'))
+            ->get()->first();
         $modo = $request->input('modo');
-        $labo = $request->input('labo');
-        return view('materia', compact('materia', 'modo', 'labo', 'grupos'));
+        return view('materia', compact('materia', 'modo', 'grupos'));
     }
 
     public function materiaEdit(Request $request)
@@ -69,6 +71,7 @@ class WebsisController extends Controller
     }
     public function registro(Request $request)
     {
+        $materias = DB::table('listamateria')->get();
         $grupoFinal = null;
         $labo = false;
         $grupoP = $request->input('grupoPractica');
@@ -84,10 +87,11 @@ class WebsisController extends Controller
             'modo' => $request->input('modo'),
             'labo' => $labo
         ]);
-        return view('oferta');
+        return view('oferta', compact('materias'));
     }
     public function actualizar(Request $request)
     {
+        $materias = DB::table('listamateria')->get();
         $grupoFinal = null;
         $labo = false;
         $grupoP = $request->input('grupoPractica');
@@ -103,13 +107,14 @@ class WebsisController extends Controller
                 'grupo' => $grupoFinal,
                 'modo' => $request->input('tipo')
             ]);
-        return view('oferta');
+        return view('oferta', compact('materias'));
     }
     function control()
     {
+        $listamaterias = DB::table('listamateria')->get();
         $estado = DB::table('control')->where('id', '=', 1)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias'));
+        return view('control', compact('estado', 'materias', 'listamaterias'));
     }
     function controlHabilitar(Request $request)
     {
@@ -131,6 +136,20 @@ class WebsisController extends Controller
             DB::table('materias')
                 ->whereIn('id', $ids)
                 ->delete();
+        }
+        return back();
+    }
+    function actualizarMaterias(Request $request)
+    {
+        $materias = $request->all();
+        foreach ($materias as $id => $values) {
+            DB::table('listamateria')
+                ->where('id', $id)
+                ->update([
+                    'mesa'     => $values['mesa'],
+                    'practica' => $values['practica'],
+                    'nivel'    => $values['nivel'],
+                ]);
         }
         return back();
     }
