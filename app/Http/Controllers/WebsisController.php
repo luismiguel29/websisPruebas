@@ -153,4 +153,9 @@ class WebsisController extends Controller
         }
         return back();
     }
+    function borrarMaterias()
+    {
+        DB::table('materias')->delete();
+        return back();
+    }
 }

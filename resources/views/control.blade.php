@@ -47,8 +47,8 @@
                         <button class="btn btn-primary">GUARDAR</button>
                     </div>
                 </form>
-                <form action="actualizarMaterias" method="GET">
-                    <div class="col">
+                <div class="col">
+                    <form action="actualizarMaterias" method="GET">
                         <div class="row">
                             <div class="col">
                                 <table class="table">
@@ -92,8 +92,14 @@
                             </div>
                         </div>
 
-                    </div>
-                </form>
+                    </form>
+
+                </div>
+                <div class="col">
+                    <form action="borrarMaterias" method="GET">
+                        <button class="btn btn-primary">BORRAR</button>
+                    </form>
+                </div>
             </div>
 
         </div>
