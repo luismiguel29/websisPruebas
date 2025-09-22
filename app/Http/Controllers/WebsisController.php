@@ -51,11 +51,12 @@ class WebsisController extends Controller
     public function materia(Request $request)
     {
         $grupos = DB::table('control')->get();
+        $error = DB::table('control')->where('id', 23)->get()->first();
         $materia = DB::table('listamateria')
             ->where('id', $request->input('materia'))
             ->get()->first();
         $modo = $request->input('modo');
-        if ($grupos->isEmpty()) {
+        if ($error->estado == 1) {
             return view('errorpage');
         } else {
             return view('materia', compact('materia', 'modo', 'grupos'));
@@ -119,8 +120,9 @@ class WebsisController extends Controller
     {
         $listamaterias = DB::table('listamateria')->get();
         $estado = DB::table('control')->where('id', '=', 1)->first();
+        $error = DB::table('control')->where('id', '=', 23)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias', 'listamaterias'));
+        return view('control', compact('estado', 'materias', 'listamaterias', 'error'));
     }
     function controlHabilitar(Request $request)
     {

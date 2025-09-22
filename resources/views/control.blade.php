@@ -25,6 +25,12 @@
                                 @if ($estado->estado) checked @endif>
                             <label for="">Estado websis</label>
                         </div>
+                        <div>
+                            <input type="hidden" name="{{ $error->id }}" value="0">
+                            <input type="checkbox" name="{{ $error->id }}" value="1"
+                                @if ($error->estado) checked @endif>
+                            <label for="">Grupos llenos</label>
+                        </div>
                         <h2>Materias:</h2>
                         @foreach ($materias as $mat)
                             @if ($mat->normal)
@@ -38,7 +44,7 @@
                         @endforeach
                         <h2>Practica:</h2>
                         @foreach ($materias as $mat)
-                            @if (!$mat->normal && $mat->id != 1)
+                            @if (!$mat->normal && $mat->id != 1 && $mat->id != 23)
                                 <div>
                                     <input type="hidden" name="{{ $mat->id }}" value="0">
                                     <input type="checkbox" name="{{ $mat->id }}" value="1"
