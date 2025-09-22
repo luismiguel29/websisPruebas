@@ -931,7 +931,9 @@
                                     <select class="form-control" id="idTipo" name="tipo" onchange="getGruposTeoricos();">
                                         <option value="Normal">Normal</option>
 
-                                        <option value="ME">Mesa de Examen</option>
+                                        @if ()
+                                            
+                                        @endif
 
                                     </select>
                                 </span>
