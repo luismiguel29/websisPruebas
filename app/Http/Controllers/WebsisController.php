@@ -57,8 +57,9 @@ class WebsisController extends Controller
         $modo = $request->input('modo');
         if ($grupos->isEmpty()) {
             return view('errorpage');
+        } else {
+            return view('materia', compact('materia', 'modo', 'grupos'));
         }
-        return view('materia', compact('materia', 'modo', 'grupos'));
     }
 
     public function materiaEdit(Request $request)
