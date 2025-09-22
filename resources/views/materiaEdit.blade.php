@@ -930,10 +930,7 @@
                                 <span id="spanTipo">
                                     <select class="form-control" id="idTipo" name="tipo" onchange="getGruposTeoricos();">
                                         <option value="Normal">Normal</option>
-
-                                        @if ()
-                                            
-                                        @endif
+                                        <option value="ME">Mesa de examen</option>
 
                                     </select>
                                 </span>
