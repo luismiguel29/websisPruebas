@@ -55,7 +55,7 @@ class WebsisController extends Controller
             ->where('id', $request->input('materia'))
             ->get()->first();
         $modo = $request->input('modo');
-        if (isEmpty($grupos)) {
+        if ($grupos->isEmpty()) {
             return view('errorpage');
         }
         return view('materia', compact('materia', 'modo', 'grupos'));
