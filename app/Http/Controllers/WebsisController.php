@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isEmpty;
+
 class WebsisController extends Controller
 {
     public function login()
@@ -53,6 +55,9 @@ class WebsisController extends Controller
             ->where('id', $request->input('materia'))
             ->get()->first();
         $modo = $request->input('modo');
+        if ($grupos . isEmpty()) {
+            return view('errorpage');
+        }
         return view('materia', compact('materia', 'modo', 'grupos'));
     }
 
