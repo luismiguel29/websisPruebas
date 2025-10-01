@@ -32,6 +32,7 @@ Route::controller(WebsisController::class)->group(function () {
     Route::get('materiaEdit', 'materiaEdit')->name('materiaEdit');
     Route::get('errorpage', 'errorpage')->name('errorpage');
     Route::get('activar', 'activar')->name('activar');
+    Route::get('sesionar', 'sesion')->name('sesion');
     Route::get('registro', 'registro')->name('registro');
     Route::get('actualizar', 'actualizar')->name('actualizar');
     Route::get('control', 'control')->name('control');

@@ -1203,7 +1203,7 @@
                                                 <tr>
                                                     <td colspan="3"
                                                         style="background-color:#AAAAAA;text-align: center;padding:5px;">
-                                                        <a href="inicio" id="idBtnSubmit" class="btn btn-primary" 
+                                                        <a href="sesion" id="idBtnSubmit" class="btn btn-primary" 
                                                             style="border-color:#215F88;background-color:#215F88; color: #eee">
                                                             <svg class="svg-inline--fa fa-sign-in-alt fa-w-16"
                                                                 style="color: white;font-size: 20px;"

@@ -11,7 +11,12 @@ class WebsisController extends Controller
 {
     public function login()
     {
-        return view('login');
+        $sesion = session('sesion', false);
+        if ($sesion) {
+            return view('login');
+        }else{
+            return view('inicio');
+        }
     }
     public function inicio()
     {
@@ -75,6 +80,11 @@ class WebsisController extends Controller
     {
         session(['estado' => true]);
         return redirect()->back();
+    }
+    public function sesion()
+    {
+        session(['sesion' => true]);
+        return $this->inicio();
     }
     public function registro(Request $request)
     {
