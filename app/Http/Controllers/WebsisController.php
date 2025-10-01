@@ -12,7 +12,7 @@ class WebsisController extends Controller
     public function login()
     {
         $sesion = session('sesion', false);
-        if ($sesion) {
+        if (!$sesion) {
             return view('login');
         }else{
             return view('inicio');
