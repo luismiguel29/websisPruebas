@@ -1037,10 +1037,14 @@
                                         </select>
                                     </td>
                                     <td style="text-align:center;vertical-align:middle;">
-                                        <button class="btn btn-primary"
-                                            style="width:100%;font-size:20px;font-weight:bold;border-color:#215F88;background-color:#215F88;">
-                                            Inscribirse
-                                        </button>
+                                        @foreach ($materiasIns as $ins)
+                                            @if ($ins->materia =! $mat->nombre)
+                                                <button class="btn btn-primary"
+                                                    style="width:100%;font-size:20px;font-weight:bold;border-color:#215F88;background-color:#215F88;">
+                                                    Inscribirse
+                                                </button>
+                                            @endif
+                                        @endforeach
                                     </td>
                                 </form>
 

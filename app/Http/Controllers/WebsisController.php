@@ -46,12 +46,13 @@ class WebsisController extends Controller
 
     public function oferta()
     {
+        $materiasIns = DB::table('materias')->get();
         $materias = DB::table('listamateria')->get();
         $estado = session('estado', false);
         if (!$estado) {
-            return view('oferta', compact('materias'));
+            return view('oferta', compact('materias', 'materiasIns'));
         } else {
-            return view('ofertaSup', compact('materias'));
+            return view('ofertaSup', compact('materias', 'materiasIns'));
         }
     }
 
