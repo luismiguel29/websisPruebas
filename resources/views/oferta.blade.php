@@ -1019,6 +1019,13 @@
 
                     @foreach ($materias as $mat)
                         @if (!$mat->nivel)
+                            @php
+                                // Comprueba si el usuario está inscrito.
+                                // Se considera inscrito si alguna inscripción tiene materia == id o == nombre
+                                $inscrito = collect($materiasIns)->contains(function ($ins) use ($mat) {
+                                    return $ins->materia == $mat->nombre;
+                                });
+                            @endphp
                             <tr>
                                 <td style="text-align:center;vertical-align:middle;font-size:20px;font-weight:bold;">
                                     1
@@ -1037,14 +1044,10 @@
                                         </select>
                                     </td>
                                     <td style="text-align:center;vertical-align:middle;">
-                                        @foreach ($materiasIns as $ins)
-                                            <button class="btn btn-primary" @if ($ins->materia == $mat->nombre)
-                                                disabled
-                                            @endif
-                                                style="width:100%;font-size:20px;font-weight:bold;border-color:#215F88;background-color:#215F88;">
-                                                Inscribirse
-                                            </button>
-                                        @endforeach
+                                        <button class="btn btn-primary"
+                                            style="width:100%;font-size:20px;font-weight:bold;border-color:#215F88;background-color:#215F88;">
+                                            Inscribirse
+                                        </button>
                                     </td>
                                 </form>
 
