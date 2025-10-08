@@ -1020,10 +1020,8 @@
                     @foreach ($materias as $mat)
                         @if (!$mat->nivel)
                             @php
-                                // Comprueba si el usuario está inscrito.
-                                // Se considera inscrito si alguna inscripción tiene materia == id o == nombre
                                 $inscrito = collect($materiasIns)->contains(function ($ins) use ($mat) {
-                                    return $ins->materia == $mat->nombre;
+                                    return trim(strtolower($ins->materia)) === trim(strtolower($mat->nombre));
                                 });
                             @endphp
                             <tr>

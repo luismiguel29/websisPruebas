@@ -96,6 +96,7 @@ class WebsisController extends Controller
     }
     public function registro(Request $request)
     {
+        $materiasIns = DB::table('materias')->get();
         $materias = DB::table('listamateria')->get();
         $grupoFinal = null;
         $labo = false;
@@ -112,10 +113,11 @@ class WebsisController extends Controller
             'modo' => $request->input('modo'),
             'labo' => $labo
         ]);
-        return view('oferta', compact('materias'));
+        return view('oferta', compact('materias', 'materiasIns'));
     }
     public function actualizar(Request $request)
     {
+        $materiasIns = DB::table('materias')->get();
         $materias = DB::table('listamateria')->get();
         $grupoFinal = null;
         $labo = false;
@@ -132,7 +134,7 @@ class WebsisController extends Controller
                 'grupo' => $grupoFinal,
                 'modo' => $request->input('tipo')
             ]);
-        return view('oferta', compact('materias'));
+        return view('oferta', compact('materias', 'materiasIns'));
     }
     function control()
     {
