@@ -14,7 +14,7 @@ class WebsisController extends Controller
         $sesion = session('sesion', false);
         if (!$sesion) {
             return view('login');
-        }else{
+        } else {
             return view('inicio');
         }
     }
@@ -25,14 +25,21 @@ class WebsisController extends Controller
 
     public function codigos()
     {
+        $cod = session('cod', false);
         $estado = DB::table('control')
             ->where('id', '=', 1)
             ->first();
-        return view('codigos', compact('estado'));
+        if (!$cod) {
+            return view('codigos', compact('estado'));
+        } else {
+            $materias = DB::table('materias')->get();
+            return view('materiasIns', compact('materias'));
+        }
     }
 
     public function materiasIns()
     {
+        session(['cod' => true]);
         $materias = DB::table('materias')->get();
         return view('materiasIns', compact('materias'));
     }
