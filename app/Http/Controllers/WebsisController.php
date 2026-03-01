@@ -120,8 +120,6 @@ class WebsisController extends Controller
         $negativo = DB::table('control')
             ->where('id', '=', 24)
             ->get()->first();
-
-        dump($negativo->estado);
         if ($negativo->estado == 0) {
             DB::table('materias')->insert([
                 'materia' => $request->input('materia'),
@@ -145,12 +143,17 @@ class WebsisController extends Controller
             $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
             $labo = true;
         }
-        DB::table('materias')
-            ->where('materia', '=', $request->input('materia'))
-            ->update([
-                'grupo' => $grupoFinal,
-                'modo' => $request->input('tipo')
-            ]);
+        $negativo = DB::table('control')
+            ->where('id', '=', 24)
+            ->get()->first();
+        if ($negativo->estado == 0) {
+            DB::table('materias')
+                ->where('materia', '=', $request->input('materia'))
+                ->update([
+                    'grupo' => $grupoFinal,
+                    'modo' => $request->input('tipo')
+                ]);
+        }
         return view('oferta', compact('materias', 'materiasIns'));
     }
     function control()
