@@ -12,8 +12,18 @@ class WebsisController extends Controller
     public function login()
     {
         $sesion = session('sesion', false);
+
         if (!$sesion) {
-            return view('login');
+
+            // Valores de prueba
+            $aspCookieName = "ASPSESSIONIDCASBASBC";
+            $aspCookieValue = "GCIBCECDCDAOBOIOHPMFLDLC";
+            $srvNameValue = "S823";
+
+            return response()
+                ->view('login')
+                ->cookie($aspCookieName, $aspCookieValue, 60) // 60 minutos
+                ->cookie("SRVNAME", $srvNameValue, 60);
         } else {
             return view('inicio');
         }
