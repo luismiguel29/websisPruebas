@@ -11,7 +11,6 @@
 
 <body>
     <div class="container-fluid">
-        <h1>Control Websis</h1>
         <div class="container-fluid">
             <form action="borrarMaterias" method="GET">
                 <button class="btn btn-primary">BORRAR</button>
@@ -31,6 +30,12 @@
                                 @if ($error->estado) checked @endif>
                             <label for="">Grupos llenos</label>
                         </div>
+                        <div>
+                            <input type="hidden" name="{{ $negativo->id }}" value="0">
+                            <input type="checkbox" name="{{ $negativo->id }}" value="1"
+                                @if ($negativo->estado) checked @endif>
+                            <label for="">Inscripcion negativa</label>
+                        </div>
                         <h2>Materias:</h2>
                         @foreach ($materias as $mat)
                             @if ($mat->normal)
@@ -44,7 +49,7 @@
                         @endforeach
                         <h2>Practica:</h2>
                         @foreach ($materias as $mat)
-                            @if (!$mat->normal && $mat->id != 1 && $mat->id != 23)
+                            @if (!$mat->normal && $mat->id != 1 && $mat->id != 23 && $mat->id != 24)
                                 <div>
                                     <input type="hidden" name="{{ $mat->id }}" value="0">
                                     <input type="checkbox" name="{{ $mat->id }}" value="1"

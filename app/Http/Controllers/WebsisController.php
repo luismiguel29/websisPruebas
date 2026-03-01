@@ -117,12 +117,19 @@ class WebsisController extends Controller
             $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
             $labo = true;
         }
-        DB::table('materias')->insert([
-            'materia' => $request->input('materia'),
-            'grupo' => $grupoFinal,
-            'modo' => $request->input('modo'),
-            'labo' => $labo
-        ]);
+        $negativo = DB::table('control')
+            ->where('id', '=', 24)
+            ->get()->first();
+
+        dump($negativo->estado);
+        if ($negativo->estado == 0) {
+            DB::table('materias')->insert([
+                'materia' => $request->input('materia'),
+                'grupo' => $grupoFinal,
+                'modo' => $request->input('modo'),
+                'labo' => $labo
+            ]);
+        }
         return view('oferta', compact('materias', 'materiasIns'));
     }
     public function actualizar(Request $request)
@@ -151,8 +158,9 @@ class WebsisController extends Controller
         $listamaterias = DB::table('listamateria')->get();
         $estado = DB::table('control')->where('id', '=', 1)->first();
         $error = DB::table('control')->where('id', '=', 23)->first();
+        $negativo = DB::table('control')->where('id', '=', 24)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias', 'listamaterias', 'error'));
+        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo'));
     }
     function controlHabilitar(Request $request)
     {
