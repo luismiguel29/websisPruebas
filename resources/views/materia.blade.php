@@ -595,7 +595,8 @@
                     <tbody>
                         <tr>
                             <td style="vertical-align:middle;">
-                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;" alt="umss">
+                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;"
+                                    alt="umss">
                             </td>
                             <td style="vertical-align:middle;width:100%">
                                 <table>
@@ -989,8 +990,7 @@
                 </form>
             </div>
             <div class="col-sm-6" style="text-align: center;padding:2px;">
-                <form action="https://websis.umss.edu.bo/stud_inscripcion.asp?codSer=STUD&amp;idCat=39"
-                    method="post">
+                <form action="materiasIns" method="get">
                     <button class="btn btn-primary"
                         style="width:350px;font-size:20px;font-weight:bold;border-color:#215F88;background-color:#215F88;">
                         <svg class="svg-inline--fa fa-list-alt fa-w-16" style="color: white;font-size: 20px;"
