@@ -89,9 +89,15 @@ class WebsisController extends Controller
     public function materiaEdit(Request $request)
     {
         $grupos = DB::table('control')->get();
+        $error = DB::table('control')->where('id', 23)->get()->first();
         $materia = $request->input('materia');
         $labo = $request->input('labo');
-        return view('materiaEdit', compact('materia', 'labo', 'grupos'));
+        //return view('materiaEdit', compact('materia', 'labo', 'grupos'));
+        if ($error->estado == 1) {
+            return view('errorpage');
+        } else {
+            return view('materiaEdit', compact('materia', 'labo', 'grupos'));
+        }
     }
 
     public function activar()
