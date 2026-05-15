@@ -1070,7 +1070,7 @@
                                                                 <td
                                                                     style="text-align:center;vertical-align: middle; padding: 2px;">
                                                                     <button class="idBtnCambiar"
-                                                                        materia="70FD1B3207087264"
+                                                                        materia="{{ $materia->id }}"
                                                                         enlace="{{ route('materiaEdit', ['materia' => $materia->materia, 'labo' => $materia->labo]) }}"
                                                                         style="border-color:#215F88;background-color:#215F88;border-radius:5px;">
                                                                         <svg class="svg-inline--fa fa-edit fa-w-18"
@@ -1090,6 +1090,7 @@
                                                     </table>
                                                 @else
                                                     <button type="submit" class="idBtnCambiar"
+                                                        materias={{ $materia->id }}
                                                         enlace="{{ route('materiaEdit', ['materia' => $materia->materia, 'labo' => $materia->labo]) }}"
                                                         style="border-color:#215F88;background-color:#215F88;border-radius:5px;">
                                                         <svg class="svg-inline--fa fa-edit fa-w-18"
