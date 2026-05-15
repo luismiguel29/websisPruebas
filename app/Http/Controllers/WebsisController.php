@@ -131,7 +131,8 @@ class WebsisController extends Controller
                 'materia' => $request->input('materia'),
                 'grupo' => $grupoFinal,
                 'modo' => $request->input('modo'),
-                'labo' => $labo
+                'labo' => $labo,
+                'edit' => 1
             ]);
         }
         return view('oferta', compact('materias', 'materiasIns'));
