@@ -39,6 +39,7 @@ Route::controller(WebsisController::class)->group(function () {
     Route::get('controlHabilitar', 'controlHabilitar')->name('controlHabilitar');
     Route::get('borrarMateria', 'borrarMateria')->name('borrarMateria');
     Route::get('actualizarMaterias', 'actualizarMaterias')->name('actualizarMaterias');
+    Route::get('actualizarMateriasEditar', 'actualizarMateriasEditar')->name('actualizarMateriasEditar');
     Route::get('borrarMaterias', 'borrarMaterias')->name('borrarMaterias');
     //Route::get('websis6', 'websis6')->name('websis6');
 });

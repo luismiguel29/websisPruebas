@@ -108,6 +108,38 @@
                     </form>
 
                 </div>
+                <div class="col">
+                    <form action="actualizarMateriasEditar" method="GET">
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Editar</th>
+                                        <th scope="col">Materia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($materiasIns as $list)
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="{{ $list->id }}[edit]" value="0">
+                                                <input type="checkbox" name="{{ $list->id }}[edit]" value="1"
+                                                    @if ($list->edit) checked @endif>
+                                            </td>
+                                            <td>
+                                                {{ $list->materia }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary">ACTUALIZAR</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
 
         </div>

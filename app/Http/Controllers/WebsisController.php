@@ -165,11 +165,12 @@ class WebsisController extends Controller
     function control()
     {
         $listamaterias = DB::table('listamateria')->get();
+        $materiasIns = DB::table('materias')->get();
         $estado = DB::table('control')->where('id', '=', 1)->first();
         $error = DB::table('control')->where('id', '=', 23)->first();
         $negativo = DB::table('control')->where('id', '=', 24)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo'));
+        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo', 'materiasIns'));
     }
     function controlHabilitar(Request $request)
     {
@@ -204,6 +205,18 @@ class WebsisController extends Controller
                     'mesa'     => $values['mesa'],
                     'practica' => $values['practica'],
                     'nivel'    => $values['nivel'],
+                ]);
+        }
+        return back();
+    }
+    function actualizarMateriasEditar(Request $request)
+    {
+        $materias = $request->all();
+        foreach ($materias as $id => $values) {
+            DB::table('materias')
+                ->where('id', $id)
+                ->update([
+                    'edit'     => $values['edit']
                 ]);
         }
         return back();
