@@ -1067,7 +1067,11 @@
                                     No
                                 </td>
                                 <td style="text-align:center;">
-                                    NO
+                                    @if ($mat->practica)
+                                        SI
+                                    @else
+                                        NO
+                                    @endif
                                 </td>
                                 <td>
                                     ON
