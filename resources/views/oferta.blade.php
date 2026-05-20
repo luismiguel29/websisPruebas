@@ -1030,7 +1030,6 @@
                                 </td>
 
                                 <form action="materia" method="POST">
-                                    @csrf
                                     <input type="hidden" name="paso" value="2">
                                     <input type="hidden" name="subj" value="{{ $mat->id }}">
                                     <input type="hidden" name="subjname" value="{{ $mat->nombre }}">
