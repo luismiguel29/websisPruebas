@@ -1039,7 +1039,7 @@
                                     <input type="hidden" name="agp" value="A66C7F0250192087">
                                     <input type="hidden" name="ame" value="9E3F20BFAF448317">
                                     <td style="width:150px;text-align:center;vertical-align: middle;">
-                                        <select name="modo" class="form-control">
+                                        <select name="attend" class="form-control">
                                             <option value="Normal">Normal</option>
                                             @if ($mat->mesa)
                                                 <option value="ME">ME</option>

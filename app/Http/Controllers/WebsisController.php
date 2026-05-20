@@ -78,7 +78,7 @@ class WebsisController extends Controller
         $materia = DB::table('listamateria')
             ->where('id', $request->input('subj'))
             ->get()->first();
-        $modo = $request->input('modo');
+        $modo = $request->input('attend');
         if ($error->estado == 1) {
             return view('errorpage');
         } else {
