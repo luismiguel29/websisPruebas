@@ -884,7 +884,7 @@
         </script>
 
         <form method="get" name="forma" action="actualizar" id="idFrmModificar">
-            <input type="hidden" name="materia" value="{{ $materia }}">            
+            <input type="hidden" name="materia" value=" {{ $datosMateria->nombre }} ">            
 
 
             <div class="table-responsive">
@@ -895,7 +895,7 @@
                                 Materia:
                             </td>
                             <td style="font-size:20px;font-weight:bold;">
-                                {{ $materia }} <span style="color:green">(2010122)</span>
+                                {{ $datosMateria->nombre }} <span style="color:green">(2010122)</span>
                             </td>
                         </tr>
                         <tr>
@@ -930,7 +930,9 @@
                                 <span id="spanTipo">
                                     <select class="form-control" id="idTipo" name="tipo" onchange="getGruposTeoricos();">
                                         <option value="Normal">Normal</option>
-                                        <option value="ME">Mesa de examen</option>
+                                        @if ( $datosMateria->mesa )                                            
+                                            <option value="ME">Mesa de examen</option>
+                                        @endif
 
                                     </select>
                                 </span>
@@ -956,7 +958,7 @@
                         </tr>
 
 
-                        @if ($labo == 1)
+                        @if ( $datosMateria->practica )
                             <tr>
                                 <td colspan="2">
                                     <span style="font-weight: bold;color:green;">Grupo(s) de Practica:</span>

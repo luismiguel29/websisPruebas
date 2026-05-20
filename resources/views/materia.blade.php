@@ -1044,7 +1044,7 @@
                                 Modalidad
                             </td>
                             <td style="font-size:20px;font-weight:bold;">
-                                Normal
+                                {{ $modo }}
                             </td>
                         </tr>
 

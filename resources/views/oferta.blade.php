@@ -1029,10 +1029,16 @@
                                     1
                                 </td>
 
-                                <form action="materia" method="get">
+                                <form action="materia" method="POST">
                                     @csrf
-                                    <input type="hidden" name="materia" value="{{ $mat->id }}">
-                                    <input type="hidden" name="labo" value="{{ $mat->practica }}">
+                                    <input type="hidden" name="paso" value="2">
+                                    <input type="hidden" name="subj" value="{{ $mat->id }}">
+                                    <input type="hidden" name="subjname" value="{{ $mat->nombre }}">
+                                    <input type="hidden" name="nivel" value="C">
+                                    <input type="hidden" name="tipooferta" value="N">
+                                    <input type="hidden" name="esElectiva" value="No">
+                                    <input type="hidden" name="agp" value="A66C7F0250192087">
+                                    <input type="hidden" name="ame" value="9E3F20BFAF448317">
                                     <td style="width:150px;text-align:center;vertical-align: middle;">
                                         <select name="modo" class="form-control">
                                             <option value="Normal">Normal</option>

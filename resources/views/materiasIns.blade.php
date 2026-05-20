@@ -1070,8 +1070,8 @@
                                                                 <td
                                                                     style="text-align:center;vertical-align: middle; padding: 2px;">
                                                                     <button class="idBtnCambiar"
-                                                                        materia="{{ $materia->id }}"
-                                                                        enlace="{{ route('materiaEdit', ['materia' => $materia->materia, 'labo' => $materia->labo]) }}"
+                                                                        materia="{{ $materia->materia }}"
+                                                                        enlace="{{ route('materiaEdit', ['materia' => $materia->materia]) }}"
                                                                         style="border-color:#215F88;background-color:#215F88;border-radius:5px;">
                                                                         <svg class="svg-inline--fa fa-edit fa-w-18"
                                                                             style="color: white;font-size: 30px;"
@@ -1090,8 +1090,8 @@
                                                     </table>
                                                 @else
                                                     <button type="submit" class="idBtnCambiar"
-                                                        materia={{ $materia->id }}
-                                                        enlace="{{ route('materiaEdit', ['materia' => $materia->materia, 'labo' => $materia->labo]) }}"
+                                                        materia="{{ $materia->materia }}"
+                                                        enlace="{{ route('materiaEdit', ['materia' => $materia->materia]) }}"
                                                         style="border-color:#215F88;background-color:#215F88;border-radius:5px;">
                                                         <svg class="svg-inline--fa fa-edit fa-w-18"
                                                             style="color: white;font-size: 30px;" aria-hidden="true"

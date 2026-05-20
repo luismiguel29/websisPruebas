@@ -28,7 +28,7 @@ Route::controller(WebsisController::class)->group(function () {
     Route::get('codigos', 'codigos')->name('codigos');
     Route::get('materiasIns', 'materiasIns')->name('materiasIns');
     Route::get('oferta', 'oferta')->name('oferta');
-    Route::get('materia', 'materia')->name('materia');
+    Route::post('materia', 'materia')->name('materia');
     Route::get('materiaEdit', 'materiaEdit')->name('materiaEdit');
     Route::get('errorpage', 'errorpage')->name('errorpage');
     Route::get('activar', 'activar')->name('activar');

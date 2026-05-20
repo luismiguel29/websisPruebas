@@ -76,7 +76,7 @@ class WebsisController extends Controller
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
         $materia = DB::table('listamateria')
-            ->where('id', $request->input('materia'))
+            ->where('id', $request->input('subj'))
             ->get()->first();
         $modo = $request->input('modo');
         if ($error->estado == 1) {
@@ -90,13 +90,14 @@ class WebsisController extends Controller
     {
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
-        $materia = $request->input('materia');
-        $labo = $request->input('labo');
+        $datosMateria = DB::table('listamateria')->where('nombre', $request->input('materia'))->first();
+        /* $materia = $request->input('materia');
+        $labo = $request->input('labo'); */
         //return view('materiaEdit', compact('materia', 'labo', 'grupos'));
         if ($error->estado == 1) {
             return view('errorpage');
         } else {
-            return view('materiaEdit', compact('materia', 'labo', 'grupos'));
+            return view('materiaEdit', compact('datosMateria', 'grupos'));
         }
     }
 
