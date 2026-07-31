@@ -78,8 +78,8 @@ class WebsisController extends Controller
     }
     public function logout(Request $request)
     {
-        $request->session()->forget('sesion');
-        $request->session()->forget('cod');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
     public function oferta()
