@@ -14,27 +14,43 @@ class WebsisController extends Controller
         $sesion = session('sesion', false);
 
         if (!$sesion) {
-
-            // Valores de prueba
             $aspCookieName = "ASPSESSIONIDCASBASBC";
             $aspCookieValue = "GCIBCECDCDAOBOIOHPMFLDLC";
             $srvNameValue = "S823";
 
             return response()
                 ->view('login')
-                ->cookie($aspCookieName, $aspCookieValue, 60) // 60 minutos
+                ->cookie($aspCookieName, $aspCookieValue, 60)
                 ->cookie("SRVNAME", $srvNameValue, 60);
         } else {
             return view('inicio');
         }
     }
+    public function activar()
+    {
+        session(['estado' => true]);
+        return redirect()->back();
+    }
+    public function sesion()
+    {
+        session(['sesion' => true]);
+        return $this->inicio();
+    }
     public function inicio()
     {
-        return view('inicio');
+        /* $sesion = session('sesion', false);
+        dd($sesion); */
+        if (session('sesion', false)) {
+            return view('inicio');
+        } else {
+            return $this->login();
+        }
     }
-
     public function codigos()
     {
+        if (!session('sesion', false)) {
+            return $this->login();
+        }
         $cod = session('cod', false);
         $estado = DB::table('control')
             ->where('id', '=', 1)
@@ -49,13 +65,28 @@ class WebsisController extends Controller
 
     public function materiasIns()
     {
-        session(['cod' => true]);
+        if (!session('cod', false)) {
+            return $this->codigos();
+        }
         $materias = DB::table('materias')->get();
         return view('materiasIns', compact('materias'));
     }
-
+    public function loginInscripcion()
+    {
+        session(['cod' => true]);
+        return $this->materiasIns();
+    }
+    public function logout(Request $request)
+    {
+        $request->session()->forget('sesion');
+        $request->session()->forget('cod');
+        return redirect()->route('login');
+    }
     public function oferta()
     {
+        if (!session('cod', false)) {
+            return $this->codigos();
+        }
         $materiasIns = DB::table('materias')->get();
         $materias = DB::table('listamateria')->get();
         $estado = session('estado', false);
@@ -101,16 +132,6 @@ class WebsisController extends Controller
         }
     }
 
-    public function activar()
-    {
-        session(['estado' => true]);
-        return redirect()->back();
-    }
-    public function sesion()
-    {
-        session(['sesion' => true]);
-        return $this->inicio();
-    }
     public function registro(Request $request)
     {
         $materiasIns = DB::table('materias')->get();

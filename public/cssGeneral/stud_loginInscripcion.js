@@ -7,7 +7,7 @@ $(document).ready(function () {
         var form = this;
         var booOK = true;
         if (estado === "1") {
-            var strActionForm = "materiasIns";
+            var strActionForm = "loginInscripcion";
         } else {
             var strActionForm = "codigos";
         }
