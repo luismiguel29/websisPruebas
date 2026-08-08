@@ -1057,7 +1057,7 @@
                                                         <table style="border:1px solid black;">
                                                             <tbody>
                                                                 <tr>
-                                                                    {{-- <td
+                                                                    <td
                                                                         style="text-align:center;vertical-align: middle;padding: 2px;">
                                                                         <select name="modocambiar"
                                                                             id="id0552762D57BC11E8"
@@ -1069,7 +1069,7 @@
                                                                             <option value="TP">Cambiar Ambos
                                                                             </option>
                                                                         </select>
-                                                                    </td> --}}
+                                                                    </td>
                                                                     <td
                                                                         style="text-align:center;vertical-align: middle; padding: 2px;">
                                                                         <button class="idBtnCambiarr" type="submit"
