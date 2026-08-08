@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::controller(WebsisController::class)->group(function () {
     Route::get('login', 'login')->name('login');
     Route::get('logout', 'logout')->name('logout');
+    Route::get('salirInscripcion', 'salirInscripcion')->name('salirInscripcion');
     Route::get('loginInscripcion', 'loginInscripcion')->name('loginInscripcion');
     Route::get('inicio', 'inicio')->name('inicio');
     Route::get('codigos', 'codigos')->name('codigos');

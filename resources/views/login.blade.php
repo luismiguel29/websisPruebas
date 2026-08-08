@@ -469,6 +469,7 @@
     <script src="{{ asset('cssGeneral/jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('cssGeneral/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cssGeneral/websiss.css') }}">
+    <script defer="" src="{{ asset('cssGeneral/stud_main.js') }}"></script>
 </head>
 
 <body>

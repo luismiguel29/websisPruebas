@@ -61,7 +61,7 @@ $(document).ready(function () {
 
    $("#idFrmTerminar").submit(function (e) {
       var form = this;
-      var strActionForm="websis2"         
+      var strActionForm="salirInscripcion"         
 
       e.preventDefault();
 

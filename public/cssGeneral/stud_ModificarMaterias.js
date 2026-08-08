@@ -36,14 +36,14 @@ $("#idFrmModificar").submit(function (e) {
       }
    }
 
-   resp = confirm("¿Está realmente seguro de que desea realizar el cambio de grupo?")                  
+   resp = confirm("ï¿½Estï¿½ realmente seguro de que desea realizar el cambio de grupo?")                  
 
    if (resp == true) {      
       $("#idIndicadorProcesoModificar").show(0);
       $("#idBtnModificar").hide(0);
       setTimeout(function () {
          form.submit();
-      }, 2000);
+      }, 4000);
    }
    else {
       return false

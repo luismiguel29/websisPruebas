@@ -76,6 +76,10 @@ class WebsisController extends Controller
         session(['cod' => true]);
         return $this->materiasIns();
     }
+    public function salirInscripcion(){
+        session(['cod' => false]);
+        return $this->inicio();
+    }
     public function logout(Request $request)
     {
         $request->session()->invalidate();
