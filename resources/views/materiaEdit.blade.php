@@ -957,7 +957,7 @@
                                 </select>
                             </td>
                         </tr>
-
+                        
                         @if ($modoCambiar!==null)
                             @if ( $datosMateria->practica && ($modoCambiar === 'TP'))
                             <tr>

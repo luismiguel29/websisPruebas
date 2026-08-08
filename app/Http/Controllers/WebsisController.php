@@ -124,7 +124,7 @@ class WebsisController extends Controller
 
     public function materiaEdit(Request $request)
     {
-        $modoCambiar = $request->input('modocambiar');
+        $modoCambiar = $request->input('modoCambiar');
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
         $datosMateria = DB::table('listamateria')->where('nombre', $request->input('materia'))->first();
