@@ -43,7 +43,7 @@ $("#idFrmModificar").submit(function (e) {
       $("#idBtnModificar").hide(0);
       setTimeout(function () {
          form.submit();
-      }, 4000);
+      }, 2000);
    }
    else {
       return false

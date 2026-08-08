@@ -884,7 +884,8 @@
         </script>
 
         <form method="get" name="forma" action="actualizar" id="idFrmModificar">
-            <input type="hidden" name="materia" value=" {{ $datosMateria->nombre }} ">            
+            <input type="hidden" name="materia" value=" {{ $datosMateria->nombre }} ">   
+            <input type="hidden" name="modoCambiar" value="{{ $modoCambiar }}">         
 
 
             <div class="table-responsive">
@@ -957,8 +958,8 @@
                             </td>
                         </tr>
 
-
-                        @if ( $datosMateria->practica )
+                        @if ($modoCambiar!==null)
+                            @if ( $datosMateria->practica && ($modoCambiar === 'TP'))
                             <tr>
                                 <td colspan="2">
                                     <span style="font-weight: bold;color:green;">Grupo(s) de Practica:</span>
@@ -976,6 +977,27 @@
                                 </td>
                             </tr>
                         @endif
+                        @else
+                            @if ( $datosMateria->practica)
+                            <tr>
+                                <td colspan="2">
+                                    <span style="font-weight: bold;color:green;">Grupo(s) de Practica:</span>
+                                    <br>
+                                    <span id="spanGruposPractica">
+                                        <select id="idGrupoPractica" name="grupoPractica" class="form-control">
+                                            <option value="-2" selected="">*** Seleccione un Grupo de Practica
+                                                ***</option>
+                                            @foreach ($grupos as $grup)
+                                                @if (!$grup->normal && $grup->id != 1 && $grup->estado)
+                                                    <option value="{{ $grup->valor }}">{{ $grup->nombre }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select></span>
+                                </td>
+                            </tr>
+                        @endif
+                        @endif
+                        
 
 
 

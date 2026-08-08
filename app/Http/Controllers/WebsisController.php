@@ -76,7 +76,8 @@ class WebsisController extends Controller
         session(['cod' => true]);
         return $this->materiasIns();
     }
-    public function salirInscripcion(){
+    public function salirInscripcion()
+    {
         session(['cod' => false]);
         return $this->inicio();
     }
@@ -123,6 +124,7 @@ class WebsisController extends Controller
 
     public function materiaEdit(Request $request)
     {
+        $modoCambiar = $request->input('modocambiar');
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
         $datosMateria = DB::table('listamateria')->where('nombre', $request->input('materia'))->first();
@@ -132,7 +134,7 @@ class WebsisController extends Controller
         if ($error->estado == 1) {
             return view('errorpage');
         } else {
-            return view('materiaEdit', compact('datosMateria', 'grupos'));
+            return view('materiaEdit', compact('datosMateria', 'grupos', 'modoCambiar'));
         }
     }
 
@@ -169,12 +171,22 @@ class WebsisController extends Controller
         $materias = DB::table('listamateria')->get();
         $grupoFinal = null;
         $labo = false;
-        $grupoP = $request->input('grupoPractica');
-        if ($grupoP == null) {
-            $grupoFinal = $request->input('grupo');
+        if ($request->input('modoCambiar') === 'GT') {
+            $grupo = DB::table('materias')
+                ->where('materia', $request->input('materia'))
+                ->get()
+                ->first();
+            $cadena = $grupo->grupo;
+            $cadena = substr_replace($cadena, $request->input('grupo'), 0, 1);
+            $grupoFinal = $cadena;
         } else {
-            $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
-            $labo = true;
+            $grupoP = $request->input('grupoPractica');
+            if ($grupoP == null) {
+                $grupoFinal = $request->input('grupo');
+            } else {
+                $grupoFinal = $request->input('grupo') . "/" . $request->input('grupoPractica');
+                $labo = true;
+            }
         }
         $negativo = DB::table('control')
             ->where('id', '=', 24)
