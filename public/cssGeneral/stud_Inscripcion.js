@@ -49,13 +49,19 @@ $(document).ready(function () {
    });
 
    $(".idBtnCambiar").click(function() {
-      var strEnlace;
-      strEnlace=$(this).attr("enlace");
+      //var strEnlace;
+      //strEnlace=$(this).attr("enlace");
       //strMateria=$(this).attr("materia");
       //strIdMateria="#id"+strMateria;
       //strEnlace=strEnlace+"&mc="+$("#id"+strMateria).val()
       //alert(strEnlace);
-      window.location.href=strEnlace;
+      //window.location.href=strEnlace;
+      //return false;
+      var select = $(this).closest('tr').find('select[name="modocambiar"]');
+      var modoCambiar = select.val();
+      var enlace = $(this).attr('enlace');
+      enlace += '&modoCambiar=' + encodeURIComponent(modoCambiar);
+      window.location.href = enlace;
       return false;
    });
 
