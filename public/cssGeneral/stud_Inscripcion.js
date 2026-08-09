@@ -79,7 +79,7 @@ $(document).ready(function () {
          setTimeout(function () {
             $("#idFrmTerminar").attr('action', strActionForm);
             form.submit();
-         }, 9000);
+         }, 2000);
       }
       else {
          return false
