@@ -76,7 +76,7 @@ $(document).ready(function () {
          setTimeout(function () {
             $("#idFrmLogin").attr('action', strActionForm);
             form.submit();
-         },1000);
+         },tiempoJS);
       }
    });
    $("#idFormRecuperarPwd").submit(function (e) {
@@ -137,6 +137,6 @@ $(document).ready(function () {
             $("#idBtnSubmit2").show(0);                                                
             $("#idRecCodSIS").focus();
          });
-      },2000);
+      },tiempoJS);
    });
 });

@@ -60,7 +60,7 @@ $(document).ready(function () {
             setTimeout(function () {
                 $("#idFrmLogin").attr("action", strActionForm);
                 form.submit();
-            }, 2000);
+            }, tiempoJS);
         }
     });
 });

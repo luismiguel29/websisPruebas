@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid">
         <div class="container-fluid">
-            <div class="row" >
+            <div class="row">
                 <div class="col-auto">
                     <form action="borrarMaterias" method="GET">
                         <button class="btn btn-primary">BORRAR</button>
@@ -21,6 +21,14 @@
                 <div class="col-auto">
                     <form action="logoutServe" method="GET">
                         <button class="btn btn-primary">CERRAR SESION</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <form action="{{ route('cambiarTiempo') }}" method="get">
+                        <button type="submit" class="btn btn-primary">
+                            Cambiar tiempo
+                        </button>
+                        <input type="number" name="tiempoJS" value="{{ $tiempoJS }}">
                     </form>
                 </div>
             </div>
@@ -131,9 +139,10 @@
                                     @foreach ($materiasIns as $list)
                                         <tr>
                                             <td>
-                                                <input type="hidden" name="{{ $list->id }}[edit]" value="0">
-                                                <input type="checkbox" name="{{ $list->id }}[edit]" value="1"
-                                                    @if ($list->edit) checked @endif>
+                                                <input type="hidden" name="{{ $list->id }}[edit]"
+                                                    value="0">
+                                                <input type="checkbox" name="{{ $list->id }}[edit]"
+                                                    value="1" @if ($list->edit) checked @endif>
                                             </td>
                                             <td>
                                                 {{ $list->materia }}

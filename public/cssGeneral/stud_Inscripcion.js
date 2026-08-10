@@ -21,7 +21,7 @@ $(document).ready(function () {
          form.submit();
          //$("#idIndicadorProcesoAnadir").hide();
          //$("#idBtnAnadir").show();
-      }, 1000);      
+      }, tiempoJS);      
    });
 
    $(window).bind('unload', function(){
@@ -43,7 +43,7 @@ $(document).ready(function () {
             setTimeout(function () {
                $("#idFrmEliminar").attr('action', strActionForm);
                $("#idFrmEliminar").submit();
-            }, 1000);
+            }, tiempoJS);
         }
       }
    });
@@ -79,7 +79,7 @@ $(document).ready(function () {
          setTimeout(function () {
             $("#idFrmTerminar").attr('action', strActionForm);
             form.submit();
-         }, 2000);
+         }, tiempoJS);
       }
       else {
          return false

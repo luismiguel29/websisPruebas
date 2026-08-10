@@ -37,7 +37,7 @@ $("#idFrmAnadir").submit(function (e) {
       $("#idBtnAnadir").hide(0);
       setTimeout(function () {
          form.submit();
-      }, 1000);
+      }, tiempoJS);
    //}
    //else {
    //   return false

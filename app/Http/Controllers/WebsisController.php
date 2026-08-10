@@ -89,14 +89,25 @@ class WebsisController extends Controller
     }
     public function logout(Request $request)
     {
+        $tiempoJS = $request->session()->get('tiempoJS', 2000);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        $request->session()->put('tiempoJS', $tiempoJS);
         return redirect()->route('login');
     }
     public function logoutServe(Request $request)
     {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        return back();
+    }
+    public function cambiarTiempo(Request $request)
+    {
+        #dd($request->all());
+        $tiempo = $request->input('tiempoJS');
+
+        session(['tiempoJS' => $tiempo]);
+
         return back();
     }
     public function oferta()

@@ -470,6 +470,9 @@
     <link rel="stylesheet" href="{{ asset('cssGeneral/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cssGeneral/websiss.css') }}">
     <script defer="" src="{{ asset('cssGeneral/stud_main.js') }}"></script>
+    <script>
+        const tiempoJS = @json($tiempoJS);
+    </script>
     <script defer="" src="{{ asset('cssGeneral/serv_estudiantes.js') }}"></script>
 </head>
 
@@ -816,8 +819,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <form  method="get" name="forma"
-                                        id="idFrmLogin">
+                                    <form method="get" name="forma" id="idFrmLogin">
                                         <table style="border:0px;margin:0px;padding:0px;width:100%">
                                             <input type="hidden" name="VERIFICACION" value="FHSJDHFHF">
                                             <input type="hidden" name="CODIGOCONTROL"
