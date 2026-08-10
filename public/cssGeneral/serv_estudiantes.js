@@ -9,73 +9,13 @@ $(document).ready(function () {
    //   scrollTop: $("#idCuenta").offset().top-190
    // }, 000);   
 
-   //*** Programamos los eventos importantes Forma Principal
-   $("#idCuenta").keydown(function (e) {
-      if (e.which===13) {
-         e.preventDefault();
-         $("#idContrasena").focus();
-      }
-   });
-   $("#idContrasena").keydown(function (e) {
-      if (e.which===13) {
-        e.preventDefault();
-        $("#idDia").focus();
-      }
-   });
-   $("#idDia").keydown(function (e) {
-      if (e.which===13) {
-        e.preventDefault();
-        $("#idMes").focus();
-      }
-   });
-   $("#idMes").keydown(function (e) {
-      if (e.which===13) {
-        e.preventDefault();
-        $("#idAnio").focus();
-      }           
-   });
-   $("#idAnio").keydown(function (e) {
-      if (e.which===13) {
-        e.preventDefault();
-        $("#idCodigo").focus();
-      }                
-   });
-
-   //*** Programamos los eventos importantes Forma de Recuperaci�n
-   $("#idRecCodSIS").keydown(function (e) {
-      $("#idDivRecuperarPwdMsg1").html("");
-      $("#idDivRecuperarPwdMsg2").html("");
-
-      if (e.which===13) {
-         e.preventDefault();
-         $("#idRecDia").focus();
-      }
-   });
-   $("#idRecDia").keydown(function (e) {
-      if (e.which===13) {
-         e.preventDefault();
-         $("#idRecMes").focus();
-      }
-   });
-   $("#idRecMes").keydown(function (e) {
-      if (e.which===13) {
-         e.preventDefault();
-         $("#idRecAnio").focus();
-      }
-   });
-   $("#idRecAnio").keydown(function (e) {
-      if (e.which===13) {
-         e.preventDefault();
-         $("#idRecImagen").focus();
-      }
-   });
-
+   
    //*** Verificar forma antes del submit
-   $("#idFrmLoginCod").submit(function (e) {
+   $("#idFrmLogin").submit(function (e) {
       var strCuenta;
       var form = this;
       var booOK = true;
-      var strActionForm="verificar_stud.asp"         
+      var strActionForm="sesion"         
 
       $("#idBtnSubmit").hide();
       $("#idIndicadorProceso").show();//fadeIn(800);
@@ -134,7 +74,7 @@ $(document).ready(function () {
       }
       else {
          setTimeout(function () {
-            $("#idFrmLoginCod").attr('action', strActionForm);
+            $("#idFrmLogin").attr('action', strActionForm);
             form.submit();
          },1000);
       }

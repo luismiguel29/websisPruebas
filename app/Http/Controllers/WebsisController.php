@@ -11,6 +11,7 @@ class WebsisController extends Controller
 {
     public function login()
     {
+        $mensaje = "Bienvenido al Servicio a Estudiantes de la UMSS.";
         $sesion = session('sesion', false);
 
         if (!$sesion) {
@@ -19,7 +20,7 @@ class WebsisController extends Controller
             $srvNameValue = "S823";
 
             return response()
-                ->view('login')
+                ->view('login', compact('mensaje'))
                 ->cookie($aspCookieName, $aspCookieValue, 60)
                 ->cookie("SRVNAME", $srvNameValue, 60);
         } else {
@@ -31,10 +32,15 @@ class WebsisController extends Controller
         session(['estado' => true]);
         return redirect()->back();
     }
-    public function sesion()
+    public function sesion(Request $request)
     {
-        session(['sesion' => true]);
-        return $this->inicio();
+        if ($request->input('idCodigo') === "CJR6877") {
+            session(['sesion' => true]);
+            return $this->inicio();
+        } else {
+            $mensaje = "El codigo de acceso es incorrecto";
+            return view('login', compact('mensaje'));
+        }
     }
     public function inicio()
     {
@@ -86,6 +92,12 @@ class WebsisController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
+    }
+    public function logoutServe(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return back();
     }
     public function oferta()
     {

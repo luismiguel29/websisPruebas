@@ -13,7 +13,7 @@
     <meta name="keywords"
         content="Universidad Mayor de San Sim�n,umss,informaci�n estudiantil,estudiante,docentes,inscripci�n,sis,websis,websiss">
 
-    
+
     <style type="text/css">
         svg:not(:root).svg-inline--fa {
             overflow: visible
@@ -465,11 +465,12 @@
             width: auto
         }
     </style>
-    
+
     <script src="{{ asset('cssGeneral/jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('cssGeneral/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('cssGeneral/websiss.css') }}">
     <script defer="" src="{{ asset('cssGeneral/stud_main.js') }}"></script>
+    <script defer="" src="{{ asset('cssGeneral/serv_estudiantes.js') }}"></script>
 </head>
 
 <body>
@@ -582,7 +583,8 @@
                     <tbody>
                         <tr>
                             <td style="vertical-align:middle;">
-                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;" alt="umss">
+                                <img src="{{ asset('cssGeneral/umss.png') }}" height="90" style="border:none;"
+                                    alt="umss">
                             </td>
                             <td style="vertical-align:middle;width:100%">
                                 <table>
@@ -814,7 +816,8 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <form method="post" name="forma" id="idFrmLogin">
+                                    <form  method="get" name="forma"
+                                        id="idFrmLogin">
                                         <table style="border:0px;margin:0px;padding:0px;width:100%">
                                             <input type="hidden" name="VERIFICACION" value="FHSJDHFHF">
                                             <input type="hidden" name="CODIGOCONTROL"
@@ -848,7 +851,7 @@
                                                                 d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z">
                                                             </path>
                                                         </svg><!-- <i class="fas fa-info-circle" aria-hidden="true" style="color:green;font-size:17px;"></i> -->
-                                                        Bienvenido al Servicio a Estudiantes de la UMSS.
+                                                        {{ $mensaje }}
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -1197,14 +1200,14 @@
                                                         style="font-size:14px;font-weight:bold;vertical-align:middle;padding: 6px 20px;">
                                                         Código</td>
                                                     <td style="vertical-align: middle;width:100%;padding:3px;">
-                                                        <input class="form-control" name="XUA414506" type="text"
+                                                        <input class="form-control" name="idCodigo" type="text"
                                                             maxlength="9" id="idCodigo">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3"
                                                         style="background-color:#AAAAAA;text-align: center;padding:5px;">
-                                                        <a href="sesion" id="idBtnSubmit" class="btn btn-primary" 
+                                                        <button id="idBtnSubmit" class="btn btn-primary"
                                                             style="border-color:#215F88;background-color:#215F88; color: #eee">
                                                             <svg class="svg-inline--fa fa-sign-in-alt fa-w-16"
                                                                 style="color: white;font-size: 20px;"
@@ -1217,7 +1220,7 @@
                                                                 </path>
                                                             </svg><!-- <i class="fas fa-sign-in-alt" style="color:white;font-size:20px;"></i> -->
                                                             Ingresar
-                                                        </a><br>
+                                                        </button><br>
                                                         <span id="idIndicadorProceso"
                                                             style="display:none;font-weight:bold;">
                                                             <svg class="svg-inline--fa fa-spinner fa-w-16 fa-spin"

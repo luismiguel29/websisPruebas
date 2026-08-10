@@ -12,9 +12,18 @@
 <body>
     <div class="container-fluid">
         <div class="container-fluid">
-            <form action="borrarMaterias" method="GET">
-                <button class="btn btn-primary">BORRAR</button>
-            </form>
+            <div class="row" >
+                <div class="col-auto">
+                    <form action="borrarMaterias" method="GET">
+                        <button class="btn btn-primary">BORRAR</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <form action="logoutServe" method="GET">
+                        <button class="btn btn-primary">CERRAR SESION</button>
+                    </form>
+                </div>
+            </div>
             <div class="row">
                 <form action="controlHabilitar" method="GET">
                     <div class="col">
