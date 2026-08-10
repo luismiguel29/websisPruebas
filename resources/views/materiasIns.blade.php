@@ -815,7 +815,7 @@
 
                                         <div class="dropdown-divider"></div>
 
-                                        <a class="dropdown-item" href="https://websis.umss.edu.bo/stud_logout.asp">
+                                        <a class="dropdown-item" href="logout">
                                             <svg class="svg-inline--fa fa-sign-out-alt fa-w-16"
                                                 style="color: green;font-size: 18px;" aria-hidden="true"
                                                 data-prefix="fas" data-icon="sign-out-alt" role="img"
@@ -897,7 +897,7 @@
 
                             <td style="vertical-align:middle;">
 
-                                <a href="https://websis.umss.edu.bo/stud_logout.asp">
+                                <a href="logout">
                                     <svg class="svg-inline--fa fa-sign-out-alt fa-w-16"
                                         style="color: #AAAAAA;font-size: 30px;" aria-hidden="true" data-prefix="fas"
                                         data-icon="sign-out-alt" role="img" xmlns="http://www.w3.org/2000/svg"

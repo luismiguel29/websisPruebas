@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\isEmpty;
@@ -11,6 +12,7 @@ class WebsisController extends Controller
 {
     public function login()
     {
+        $tiempoJS = $this->obtenerTiempoJS();
         $mensaje = "Bienvenido al Servicio a Estudiantes de la UMSS.";
         $sesion = session('sesion', false);
 
@@ -20,11 +22,11 @@ class WebsisController extends Controller
             $srvNameValue = "S823";
 
             return response()
-                ->view('login', compact('mensaje'))
+                ->view('login', compact('mensaje', 'tiempoJS'))
                 ->cookie($aspCookieName, $aspCookieValue, 60)
                 ->cookie("SRVNAME", $srvNameValue, 60);
         } else {
-            return view('inicio');
+            return view('inicio', compact('tiempoJS'));
         }
     }
     public function activar()
@@ -46,6 +48,7 @@ class WebsisController extends Controller
     {
         /* $sesion = session('sesion', false);
         dd($sesion); */
+        $tiempoJS = $this->obtenerTiempoJS();
         if (session('sesion', false)) {
             return view('inicio');
         } else {
@@ -54,6 +57,7 @@ class WebsisController extends Controller
     }
     public function codigos()
     {
+        $tiempoJS = $this->obtenerTiempoJS();
         if (!session('sesion', false)) {
             return $this->login();
         }
@@ -62,10 +66,10 @@ class WebsisController extends Controller
             ->where('id', '=', 1)
             ->first();
         if (!$cod) {
-            return view('codigos', compact('estado'));
+            return view('codigos', compact('estado', 'tiempoJS'));
         } else {
             $materias = DB::table('materias')->get();
-            return view('materiasIns', compact('materias'));
+            return view('materiasIns', compact('materias', 'tiempoJS'));
         }
     }
 
@@ -74,8 +78,9 @@ class WebsisController extends Controller
         if (!session('cod', false)) {
             return $this->codigos();
         }
+        $tiempoJS = $this->obtenerTiempoJS();
         $materias = DB::table('materias')->get();
-        return view('materiasIns', compact('materias'));
+        return view('materiasIns', compact('materias', 'tiempoJS'));
     }
     public function loginInscripcion()
     {
@@ -89,11 +94,10 @@ class WebsisController extends Controller
     }
     public function logout(Request $request)
     {
-        $tiempoJS = $request->session()->get('tiempoJS', 2000);
+        $tiempoJS = $this->obtenerTiempoJS();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        $request->session()->put('tiempoJS', $tiempoJS);
-        return redirect()->route('login');
+        return $this->login();
     }
     public function logoutServe(Request $request)
     {
@@ -101,14 +105,15 @@ class WebsisController extends Controller
         $request->session()->regenerateToken();
         return back();
     }
+    private function obtenerTiempoJS()
+    {
+        return Cache::get('tiempoJS', 2000);
+    }
     public function cambiarTiempo(Request $request)
     {
-        #dd($request->all());
-        $tiempo = $request->input('tiempoJS');
+        Cache::forever('tiempoJS', (int) $request->input('tiempoJS'));
 
-        session(['tiempoJS' => $tiempo]);
-
-        return back();
+        return redirect()->back();
     }
     public function oferta()
     {
@@ -132,6 +137,7 @@ class WebsisController extends Controller
 
     public function materia(Request $request)
     {
+        $tiempoJS = $this->obtenerTiempoJS();
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
         $materia = DB::table('listamateria')
@@ -141,12 +147,13 @@ class WebsisController extends Controller
         if ($error->estado == 1) {
             return view('errorpage');
         } else {
-            return view('materia', compact('materia', 'modo', 'grupos'));
+            return view('materia', compact('materia', 'modo', 'grupos', 'tiempoJS'));
         }
     }
 
     public function materiaEdit(Request $request)
     {
+        $tiempoJS = $this->obtenerTiempoJS();
         $modoCambiar = $request->input('modoCambiar');
         $grupos = DB::table('control')->get();
         $error = DB::table('control')->where('id', 23)->get()->first();
@@ -157,7 +164,7 @@ class WebsisController extends Controller
         if ($error->estado == 1) {
             return view('errorpage');
         } else {
-            return view('materiaEdit', compact('datosMateria', 'grupos', 'modoCambiar'));
+            return view('materiaEdit', compact('datosMateria', 'grupos', 'modoCambiar', 'tiempoJS'));
         }
     }
 
@@ -226,13 +233,14 @@ class WebsisController extends Controller
     }
     function control()
     {
+        $tiempoJS = $this->obtenerTiempoJS();
         $listamaterias = DB::table('listamateria')->get();
         $materiasIns = DB::table('materias')->get();
         $estado = DB::table('control')->where('id', '=', 1)->first();
         $error = DB::table('control')->where('id', '=', 23)->first();
         $negativo = DB::table('control')->where('id', '=', 24)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo', 'materiasIns'));
+        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo', 'materiasIns', 'tiempoJS'));
     }
     function controlHabilitar(Request $request)
     {
