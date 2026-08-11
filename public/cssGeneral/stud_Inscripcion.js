@@ -60,7 +60,7 @@ $(document).ready(function () {
       var select = $(this).closest('tr').find('select[name="modocambiar"]');
       var modoCambiar = select.val();
       var enlace = $(this).attr('enlace');
-      enlace += '&modoCambiar=' + encodeURIComponent(modoCambiar);
+      //enlace += '&modoCambiar=' + encodeURIComponent(modoCambiar);
       window.location.href = enlace;
       return false;
    });
