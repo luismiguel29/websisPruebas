@@ -19,11 +19,6 @@
                     </form>
                 </div>
                 <div class="col-auto">
-                    <form action="logoutServe" method="GET">
-                        <button class="btn btn-primary">CERRAR SESION</button>
-                    </form>
-                </div>
-                <div class="col-auto">
                     <form action="{{ route('cambiarTiempo') }}" method="get">
                         <button type="submit" class="btn btn-primary">
                             Cambiar tiempo
