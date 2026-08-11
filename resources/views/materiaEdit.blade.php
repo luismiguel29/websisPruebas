@@ -961,7 +961,7 @@
                             </td>
                         </tr>
                         
-                        @if ($modoCambiar!==null)
+                        @if (isset($modoCambiar))
                             @if ( $datosMateria->practica && ($modoCambiar === 'TP'))
                             <tr>
                                 <td colspan="2">
