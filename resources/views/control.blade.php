@@ -30,17 +30,19 @@
             <div class="row">
                 <form action="controlHabilitar" method="GET">
                     <div class="col">
-                        <div>
-                            <input type="hidden" name="{{ $estado->id }}" value="0">
-                            <input type="checkbox" name="{{ $estado->id }}" value="1"
-                                @if ($estado->estado) checked @endif>
-                            <label for="">Estado websis</label>
-                        </div>
-                        <div>
-                            <input type="hidden" name="{{ $serve->id }}" value="0">
-                            <input type="checkbox" name="{{ $serve->id }}" value="1"
-                                @if ($serve->estado) checked @endif>
-                            <label for="">Error Servidor</label>
+                        <div class="row">
+                            <div class="col-auto">
+                                <input type="hidden" name="{{ $estado->id }}" value="0">
+                                <input type="checkbox" name="{{ $estado->id }}" value="1"
+                                    @if ($estado->estado) checked @endif>
+                                <label for="">Estado websis</label>
+                            </div>
+                            <div class="col-auto">
+                                <input type="hidden" name="{{ $serve->id }}" value="0">
+                                <input type="checkbox" name="{{ $serve->id }}" value="1"
+                                    @if ($serve->estado) checked @endif>
+                                <label for="">Error Servidor</label>
+                            </div>
                         </div>
                         <div>
                             <input type="hidden" name="{{ $error->id }}" value="0">
@@ -67,7 +69,7 @@
                         @endforeach
                         <h2>Practica:</h2>
                         @foreach ($materias as $mat)
-                            @if (!$mat->normal && $mat->id != 1 && $mat->id != 23 && $mat->id != 24)
+                            @if (!$mat->normal && $mat->id != 1 && $mat->id != 23 && $mat->id != 24 && $mat->id != 25)
                                 <div>
                                     <input type="hidden" name="{{ $mat->id }}" value="0">
                                     <input type="checkbox" name="{{ $mat->id }}" value="1"
