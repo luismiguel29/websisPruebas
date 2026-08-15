@@ -85,6 +85,10 @@ class WebsisController extends Controller
     public function loginInscripcion()
     {
         session(['cod' => true]);
+        $errorServe = DB::table('control')->where('id', '=', 25)->first();
+        if ($errorServe->estado) {
+            return view('errorpage');
+        }
         return $this->materiasIns();
     }
     public function salirInscripcion()
@@ -239,11 +243,13 @@ class WebsisController extends Controller
         $estado = DB::table('control')->where('id', '=', 1)->first();
         $error = DB::table('control')->where('id', '=', 23)->first();
         $negativo = DB::table('control')->where('id', '=', 24)->first();
+        $errorServe = DB::table('control')->where('id', '=', 25)->first();
         $materias = DB::table('control')->get();
-        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo', 'materiasIns', 'tiempoJS'));
+        return view('control', compact('estado', 'materias', 'listamaterias', 'error', 'negativo', 'materiasIns', 'errorServe', 'tiempoJS'));
     }
     function controlHabilitar(Request $request)
     {
+        dd($request->all());
         $data = $request->all();
         foreach ($data as $key => $value) {
             DB::table('control')
