@@ -30,19 +30,17 @@
             <div class="row">
                 <form action="controlHabilitar" method="GET">
                     <div class="col">
-                        <div class="row">
-                            <div class="col-auto">
-                                <input type="hidden" name="{{ $estado->id }}" value="0">
-                                <input type="checkbox" name="{{ $estado->id }}" value="1"
-                                    @if ($estado->estado) checked @endif>
-                                <label for="">Estado websis</label>
-                            </div>
-                            <div class="col-auto">
-                                <input type="hidden" name="{{ $errorServe->id }}" value="0">
-                                <input type="checkbox" name="{{ $errorServe->id }}" value="1"
-                                    @if ($errorServe->estado) checked @endif>
-                                <label for="">Error Servidor</label>
-                            </div>
+                        <div>
+                            <input type="hidden" name="{{ $estado->id }}" value="0">
+                            <input type="checkbox" name="{{ $estado->id }}" value="1"
+                                @if ($estado->estado) checked @endif>
+                            <label for="">Estado websis</label>
+                        </div>
+                        <div>
+                            <input type="hidden" name="{{ $serve->id }}" value="0">
+                            <input type="checkbox" name="{{ $serve->id }}" value="1"
+                                @if ($serve->estado) checked @endif>
+                            <label for="">Error Servidor</label>
                         </div>
                         <div>
                             <input type="hidden" name="{{ $error->id }}" value="0">
